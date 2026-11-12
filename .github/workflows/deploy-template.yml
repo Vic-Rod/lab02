@@ -96,97 +96,97 @@ jobs:
 
             "
  
-CICD pipeline:
+# CICD pipeline:
  
-name: Demo CICD Multi-Stage Deployment
+# name: Demo CICD Multi-Stage Deployment
 
-on:
+# on:
 
-  workflow_run:
+#   workflow_run:
 
-    workflows: ["Demo CI Pipeline"] # 🌟 CRUCIAL: Match the exact name field from the top of the CI workflow
+#     workflows: ["Demo CI Pipeline"] # 🌟 CRUCIAL: Match the exact name field from the top of the CI workflow
 
-    types:
+#     types:
 
-      - completed              # Triggers when the target workflow completely finishes running
+#       - completed              # Triggers when the target workflow completely finishes running
 
-permissions:
+# permissions:
 
-  id-token: write # 🌟 Required for requesting the JWT OIDC token
+#   id-token: write # 🌟 Required for requesting the JWT OIDC token
 
-  contents: read  # 🌟 Required for actions/checkout
+#   contents: read  # 🌟 Required for actions/checkout
 
-jobs:
+# jobs:
 
-  # Call your completely separate existing CI file
+#   # Call your completely separate existing CI file
 
-  ci:
+#   ci:
 
-    uses: ./.github/workflows/demo-ci.yml
+#     uses: ./.github/workflows/demo-ci.yml
  
-  # =========================================================================
+#   # =========================================================================
 
-  # DEPLOY TO DEV (REUSING TEMPLATE)
+#   # DEPLOY TO DEV (REUSING TEMPLATE)
 
-  # =========================================================================
+#   # =========================================================================
 
-  deploy-dev:
+#   deploy-dev:
 
-    name: Dev Stage
+#     name: Dev Stage
 
-    needs: ci    
+#     needs: ci    
 
-    uses: ./.github/workflows/deploy-template.yml
+#     uses: ./.github/workflows/deploy-template.yml
 
-    with:
+#     with:
 
-      environment-name: 'dev' 
+#       environment-name: 'dev' 
 
-    # 🌟 Explicitly maps the secret permission layer to the template
+#     # 🌟 Explicitly maps the secret permission layer to the template
 
-    secrets: inherit
+#     secrets: inherit
  
-  # =========================================================================
+#   # =========================================================================
 
-  # DEPLOY TO UAT (REUSING TEMPLATE)
+#   # DEPLOY TO UAT (REUSING TEMPLATE)
 
-  # =========================================================================
+#   # =========================================================================
 
-  deploy-uat:
+#   deploy-uat:
 
-    name: UAT Stage
+#     name: UAT Stage
 
-    needs: deploy-dev     
+#     needs: deploy-dev     
 
-    uses: ./.github/workflows/deploy-template.yml
+#     uses: ./.github/workflows/deploy-template.yml
 
-    with:
+#     with:
 
-      environment-name: 'uat'    
+#       environment-name: 'uat'    
 
-    # 🌟 Explicitly maps the secret permission layer to the template
+#     # 🌟 Explicitly maps the secret permission layer to the template
 
-    secrets: inherit 
+#     secrets: inherit 
 
-  # =========================================================================
+#   # =========================================================================
 
-  # DEPLOY TO PROD (REUSING TEMPLATE)
+#   # DEPLOY TO PROD (REUSING TEMPLATE)
 
-  # =========================================================================
+#   # =========================================================================
 
-  deploy-prod:
+#   deploy-prod:
 
-    name: Prod Stage
+#     name: Prod Stage
 
-    needs: deploy-uat   
+#     needs: deploy-uat   
 
-    uses: ./.github/workflows/deploy-template.yml
+#     uses: ./.github/workflows/deploy-template.yml
 
-    with:
+#     with:
 
-      environment-name: 'prod'  
+#       environment-name: 'prod'  
 
-    # 🌟 Explicitly maps the secret permission layer to the template
+#     # 🌟 Explicitly maps the secret permission layer to the template
 
-    secrets: inherit
+#     secrets: inherit
  
