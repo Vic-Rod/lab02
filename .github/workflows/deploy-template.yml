@@ -66,7 +66,7 @@ jobs:
 
           source: "dist/**,package.json,package-lock.json"
 
-          target: "C:/apps/my-ts-app-100"
+          target: "C:/apps/victor"
  
       # 3. Install production-only dependencies on the VM and restart PM2
 
@@ -86,7 +86,7 @@ jobs:
 
             powershell -Command "
 
-              cd C:\apps\my-ts-app-100;
+              cd C:\apps\victor;
 
               npm ci --omit=dev;
 
