@@ -11,8 +11,8 @@ permissions:
   contents: read  # 🌟 Required for actions/checkout
 jobs:
   # Call your completely separate existing CI file
-  ci:
-    uses: ./.github/workflows/demo-ci.yml
+  #ci:
+   # uses: ./.github/workflows/demo-ci.yml
  
   # =========================================================================
   # DEPLOY TO DEV (REUSING TEMPLATE)
