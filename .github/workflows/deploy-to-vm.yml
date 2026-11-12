@@ -9,6 +9,7 @@ on:
 permissions:
   id-token: write # 🌟 Required for requesting the JWT OIDC token
   contents: read  # 🌟 Required for actions/checkout
+  actions: read
 jobs:
   # Call your completely separate existing CI file
   #ci:
